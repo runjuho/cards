@@ -1,0 +1,14 @@
+<!doctype html><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>카드뉴스</title>
+<body style="background:#0E1113;color:#98A0A7;font-family:system-ui;padding:24px">불러오는 중
+<script>
+// 카톡 전달용 뷰어. #<id> 로 받은 전달 페이지(deliver-cards.py build 결과)를 CDN에서 읽어 그대로 띄운다.
+// CDN이 .html을 text/plain으로 내보내서(2026-09-28~) 직접 열면 코드만 보이기 때문에 여기서 대신 렌더한다.
+const id = location.hash.slice(1);
+if (!/^[0-9a-f-]{36}$/.test(id)) document.body.textContent = '링크가 잘못됐어요';
+else fetch('https://d2ol7oe51mr4n9.cloudfront.net/user_3EZ4QOXFWGtMb7s78DjLab81Lak/' + id + '.html')
+  .then(r => { if (!r.ok) throw r.status; return r.text(); })
+  .then(t => { document.open(); document.write(t); document.close(); })
+  .catch(e => document.body.textContent = '불러오기 실패 · ' + e);
+</script>
